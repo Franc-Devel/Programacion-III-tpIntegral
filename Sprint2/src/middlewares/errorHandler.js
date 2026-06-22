@@ -1,0 +1,6 @@
+export function errorHandler(err, req, res, next) {
+  res.status(err.statusCode || 500).json({
+    error: err.name || "InternalServerError",
+    message: err.message || "Error interno del servidor",
+  });
+}
