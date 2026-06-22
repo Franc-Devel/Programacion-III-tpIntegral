@@ -23,6 +23,7 @@ async function ejecutarPrueba() {
       data: {
         name: "Cliente de Prueba",
         email: "cliente@tp.com",
+        password: "password123", // ¡Agregamos este campo obligatorio!
       },
     });
 
@@ -80,4 +81,3 @@ async function ejecutarPrueba() {
 }
 
 ejecutarPrueba();
-  
