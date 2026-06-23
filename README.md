@@ -1,33 +1,65 @@
-# Trabajo Práctico Integrador - Backend
+📋 Requisitos Previos
+Node.js: v18 o superior.
 
-Este proyecto es la entrega del Trabajo Práctico Integrador, enfocado en el diseño e implementación de un modelo de datos relacional utilizando **Node.js, Express, Prisma ORM y MariaDB/MySQL**.
+XAMPP: Con los servicios MySQL y Apache iniciados.
 
-## 🧱 Modelo de Datos y Entidades
+Editor: VS Code.
 
-El sistema simula un escenario de compras en línea. Se partió de dos entidades base (`Category` y `Product`) y se expandió el esquema agregando el flujo de compras con las siguientes entidades:
+🚀 Guía de Instalación y Ejecución
 
-1. **User**: Representa a los clientes del sistema.
-2. **Order**: Representa la compra general o "carrito" de un usuario en un momento dado.
-3. **OrderItem**: Es la tabla intermedia que guarda el detalle de la compra (cantidad y precio congelado al momento de la adquisición).
+1. Configuración de Base de Datos
+   Abrí http://localhost/phpmyadmin.
 
-## 🔗 Relaciones entre Entidades
+Hacé clic en "Nueva" y crea una base de datos llamada cine_db.
 
-El modelo lógico implementado respeta las siguientes relaciones:
+2. Configuración del Backend
+   Navegá a la carpeta /Backend.
 
-* **Category 1 → N Product**: Una categoría agrupa múltiples productos. Un producto pertenece a una sola categoría.
-* **User 1 → N Order**: Un usuario puede realizar múltiples órdenes de compra a lo largo del tiempo.
-* **Order 1 → N OrderItem**: Una orden tiene múltiples detalles (ítems), uno por cada producto diferente comprado.
-* **Product 1 → N OrderItem**: Un mismo producto puede estar presente en muchas órdenes diferentes de distintos usuarios.
+Instalá las dependencias:
 
-Esta estructura resuelve la relación de *Muchos a Muchos* (N:N) entre `Order` y `Product` a través de la entidad intermedia `OrderItem`.
-
-## 🚀 Pasos para ejecutar el proyecto
-
-### 1. Configuración Inicial
-Asegúrate de tener un servidor de base de datos MySQL/MariaDB corriendo (ej: a través de XAMPP).
-Crea una base de datos vacía llamada `tp_sprint2_db`.
-
-### 2. Instalación de dependencias
-Abre la terminal en la raíz del proyecto y ejecuta:
-```bash
+Bash
 npm install
+Crea un archivo .env en la raíz de /Backend con el siguiente contenido:
+
+Fragmento de código
+DATABASE_URL="mysql://root:@localhost:3306/cine_db"
+DATABASE_HOST=localhost
+DATABASE_USER=root
+DATABASE_PASSWORD=
+DATABASE_NAME=cine_db
+JWT_SECRET="tu_secreto_super_seguro"
+PORT=3000
+Generá el cliente de Prisma y ejecutá las migraciones:
+
+Bash
+npx prisma generate
+npx prisma migrate dev --name init_cine
+Sembrá los datos iniciales (crea el usuario Admin):
+
+Bash
+node seed.js
+Iniciá el servidor:
+
+Bash
+npm run dev 3. Configuración del Frontend
+Navegá a la carpeta /Frontend.
+
+Instalá las dependencias:
+
+Bash
+npm install
+Iniciá el servidor de desarrollo:
+
+Bash
+npm run dev
+🔐 Credenciales de Acceso
+Al ejecutar el seed.js, se crea automáticamente un usuario administrador:
+
+Email: admin@cine.com
+
+Contraseña: admin123
+
+🛠️ Estructura del Proyecto
+/Backend: API REST construida con Express y Prisma.
+
+/Frontend: Interfaz web moderna con Vite y Vanilla JS.

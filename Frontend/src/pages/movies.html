@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineApp - Dashboard</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app" class="bunker-container">
+      <header class="header-nav">
+        <h2>Panel de Control - CineApp</h2>
+        <div class="user-info">
+          <span id="user-display-name">Cargando usuario...</span>
+          <button type="button" id="logout-btn" class="btn-danger">
+            Cerrar sesión
+          </button>
+        </div>
+      </header>
+
+      <section id="admin-panel" style="display: none">
+        <h3>🛡️ Agregar Nueva Película</h3>
+        <form id="movie-form" class="bunker-form">
+          <input
+            type="text"
+            id="movie-title"
+            placeholder="Título de la película"
+            required
+          />
+          <input
+            type="text"
+            id="movie-director"
+            placeholder="Director"
+            required
+          />
+          <input
+            type="number"
+            id="movie-year"
+            placeholder="Año (ej. 2024)"
+            required
+          />
+          <input
+            type="number"
+            id="movie-duration"
+            placeholder="Duración (minutos)"
+            required
+          />
+          <input
+            type="number"
+            id="movie-genre"
+            placeholder="ID del Género (ej. 1)"
+            required
+          />
+          <textarea
+            id="movie-synopsis"
+            placeholder="Sinopsis..."
+            required
+          ></textarea>
+          <button type="submit" id="btn-movie" class="btn-primary">
+            Registrar Película
+          </button>
+        </form>
+      </section>
+
+      <section class="catalog-section">
+        <h3>🎬 Catálogo Disponible</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Director</th>
+              <th>Año</th>
+              <th>Género</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="movies-tbody"></tbody>
+        </table>
+      </section>
+    </div>
+    <script type="module" src="/src/movies.js"></script>
+  </body>
+</html>

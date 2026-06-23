@@ -1,7 +1,7 @@
 import { logout } from "./api/authApi.js";
 import { initUI } from "./ui/moviesUI.js";
 
-// Esto inicializa todo el flujo del cine al cargar la página
+// Esto asegura que la interfaz se cargue cuando el HTML esté listo
 document.addEventListener("DOMContentLoaded", () => {
   initUI();
 
