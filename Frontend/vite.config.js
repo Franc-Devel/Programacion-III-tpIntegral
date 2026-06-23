@@ -7,7 +7,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        productos: resolve(__dirname, "src/pages/productos.html"),
+        movies: resolve(__dirname, "src/pages/movies.html"), // Actualizado a movies
       },
     },
   },
