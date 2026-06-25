@@ -5,11 +5,9 @@ import {
   createReview,
 } from "../api/moviesApi.js";
 
+// Declaramos las variables vacías a nivel de módulo
 let movies = [];
-const tbody = document.getElementById("movies-tbody");
-const adminPanel = document.getElementById("admin-panel");
-const movieForm = document.getElementById("movie-form");
-const userDisplay = document.getElementById("user-display-name");
+let tbody, adminPanel, movieForm, userDisplay;
 
 function getUser() {
   const userStr = localStorage.getItem("user");
@@ -17,6 +15,12 @@ function getUser() {
 }
 
 export async function initUI() {
+  // Las inicializamos ACÁ adentro, asegurando que el DOM ya cargó
+  tbody = document.getElementById("movies-tbody");
+  adminPanel = document.getElementById("admin-panel");
+  movieForm = document.getElementById("movie-form");
+  userDisplay = document.getElementById("user-display-name");
+
   const user = getUser();
   if (!user) {
     window.location.href = "/index.html";
