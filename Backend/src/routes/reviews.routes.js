@@ -3,6 +3,7 @@ import { prisma } from "../db.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 import { ValidationError } from "../errors/ValidationError.js";
 import { AppError } from "../errors/AppError.js";
+import { NotFoundError } from "../errors/NotFoundError.js";
 
 const router = Router();
 

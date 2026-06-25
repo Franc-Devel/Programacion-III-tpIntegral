@@ -4,25 +4,29 @@ import bcrypt from "bcryptjs";
 async function main() {
   console.log("⚙️  Iniciando carga de datos de prueba...");
 
-  // 1. Crear un Género
-  const genero = await prisma.genre.create({
-    data: { name: "Ciencia Ficción" },
+  // 1. Upsert de Género (Lo crea si no existe)
+  const genero = await prisma.genre.upsert({
+    where: { name: "Ciencia Ficción" },
+    update: {},
+    create: { name: "Ciencia Ficción" },
   });
 
-  // 2. Crear tu usuario Administrador
+  // 2. Upsert de Administrador (Lo crea si no existe)
   const hashedPassword = await bcrypt.hash("admin123", 10);
-  const admin = await prisma.user.create({
-    data: {
+  const admin = await prisma.user.upsert({
+    where: { email: "admin@cine.com" },
+    update: {},
+    create: {
       name: "Agustín (Admin)",
       email: "admin@cine.com",
       password: hashedPassword,
-      role: "admin", // ¡Clave para que se habilite el formulario!
+      role: "admin",
     },
   });
 
   console.log("✅ Datos listos.");
-  console.log(`🎬 Género creado: ${genero.name} (ID: ${genero.id})`);
-  console.log(`👤 Admin creado: ${admin.email} | Pass: admin123`);
+  console.log(`🎬 Género validado/creado: ${genero.name} (ID: ${genero.id})`);
+  console.log(`👤 Admin validado/creado: ${admin.email}`);
 }
 
 main()
